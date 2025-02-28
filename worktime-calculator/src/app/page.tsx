@@ -1,5 +1,5 @@
 "use client";
-import { Button } from '../components/ui/ButtonTest';
+import { Button } from '../components/ui/Button';
 
 export default function Home() {
   function buttonClick(){
@@ -11,7 +11,9 @@ export default function Home() {
       <h1 className="text-4xl font-bold text-gray-700">
         Worktime Calculator
       </h1>
-      <Button text='⚠️ Test Button' onClick={buttonClick}/>
+      <Button variant='secondary' onClick={buttonClick}>
+      ⚠️ Test Button
+      </Button>
     </main>
   );
 }
