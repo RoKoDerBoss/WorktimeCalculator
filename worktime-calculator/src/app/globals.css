@@ -8,15 +8,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: #202020;
+  --foreground: #f0f0f0;
 }
 
 body {
