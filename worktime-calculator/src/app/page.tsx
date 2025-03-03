@@ -4,6 +4,9 @@ import { useState } from 'react';
 import { Button } from '../components/ui/Button';
 import { Card, CardTitle, CardContent, CardFooter } from '../components/ui/Card' 
 import { InputBox, DisplayBox } from '../components/ui/InputBox';
+import { IconButton } from '../components/ui/IconButton'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const [loading, setLoading] = useState(false)
@@ -18,6 +21,10 @@ export default function Home() {
         \nStartTime: ${StartTime || "Not provided"}`)
     }, 1000);
   }
+
+  function iconClick() {
+    alert('Settings Panel')
+  }
   
   return (
     <main className="flex min-h-screen flex-col items-center justify-center space-y-12">
@@ -25,9 +32,12 @@ export default function Home() {
         Worktime Calculator
       </h1>
       <Card className='w-96'>
-        <CardTitle className='text-left'>
-          Start calculating
-        </CardTitle>
+        <div className='flex justify-between items-center mb-4'>
+          <CardTitle className='text-left'>
+            Start calculating
+          </CardTitle>
+          <IconButton icon={<FontAwesomeIcon icon={faGear} />} onClick={iconClick} size='md' />
+        </div>
         <CardContent>
           This tool calculates the remaining worktime until you're free like Dobby!
         </CardContent>
