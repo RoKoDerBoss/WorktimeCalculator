@@ -43,9 +43,12 @@ export function MainCard({
             This tool calculates the remaining worktime until you're free like Dobby!
           </CardContent>
           <DisplayBox
-              multiline={true}
-              value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
-              className={`mt-6 mb-6 font-semibold font-mono h-36 border-2 transition-all duration-500 ease-in-out ${highlightDisplay ? "border-green-300" : ""} ${animate ? "opacity-100 scale-105" : "opacity-0 scale-95"}`}
+                multiline={true}
+                value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
+                className={`mt-6 mb-6 font-semibold font-mono h-36 border-2 transition-all duration-500 ease-in-out 
+                    ${highlightDisplay ? "border-green-300" : ""} 
+                    ${animate ? "opacity-100 scale-100" : "opacity-50 scale-95"}`
+                }
             />
           <InputBox
               value={StartTime}

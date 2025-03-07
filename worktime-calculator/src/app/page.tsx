@@ -13,6 +13,7 @@ export default function Home() {
   const [SettingsIsHidden, setSettingsIsHidden] = useState(true);
   const [highlightDisplay, setHighlightDisplay] = useState(false);
   const [animate, setAnimate] = useState(true);
+  const animation_delay = 200;
 
   
   function buttonClick(){
@@ -20,18 +21,22 @@ export default function Home() {
 
     const WorkedHours = RequiredHours;
 
-    setDisplayValue(`📅 Work Summary\n\nStart Time:   ${StartTime || "--:--"} Uhr\nEnd Time:     00:00 Uhr\nWorked Hours: ${WorkedHours || "00:00"} h`)
-    //setDisplayValue(`📅 Work Summary\n\nStart Time: ${StartTime || "--:--"} Uhr\nEnd Time:     ${EndTime || "00:00"} Uhr\nWorked Hours: ${WorkedHours || "00:00 h"}`)
-
-    setHighlightDisplay(true);
-    setAnimate(true);
-    // alert(`Button has been clicked!
-    //   \nStartTime: ${StartTime || "Not provided"}`);
+    setTimeout(() => {
+      setDisplayValue(`📅 Work Summary\n\nStart Time:   ${StartTime || "--:--"} Uhr\nEnd Time:     00:00 Uhr\nWorked Hours: ${WorkedHours || "00:00"} h`)
+      //setDisplayValue(`📅 Work Summary\n\nStart Time: ${StartTime || "--:--"} Uhr\nEnd Time:     ${EndTime || "00:00"} Uhr\nWorked Hours: ${WorkedHours || "00:00 h"}`)
+      
+      setAnimate(true);
+      setHighlightDisplay(true);
+    }, animation_delay)
   }
   
   function resetDisplay() {
-    setDisplayValue("\n\n                ...");
-    setHighlightDisplay(false);
+    setAnimate(false);
+    setTimeout(() => {
+      setDisplayValue("\n\n                ...");
+      setAnimate(true);
+      setHighlightDisplay(false);
+    }, animation_delay)
   }
 
   return (
