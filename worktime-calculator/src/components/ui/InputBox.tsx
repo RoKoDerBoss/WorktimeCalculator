@@ -3,7 +3,7 @@
 import clsx from "clsx";
 
 interface InputBoxProps{
-    label?: string; // Optional label
+    label?: string;
     placeholder?: string;
     value?: string;
     onChange?: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
