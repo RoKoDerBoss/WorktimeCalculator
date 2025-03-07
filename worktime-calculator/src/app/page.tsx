@@ -22,8 +22,8 @@ export default function Home() {
     const WorkedHours = RequiredHours;
 
     setTimeout(() => {
-      setDisplayValue(`📅 Work Summary\n\nStart Time:   ${StartTime || "--:--"} Uhr\nEnd Time:     00:00 Uhr\nWorked Hours: ${WorkedHours || "00:00"} h`)
-      //setDisplayValue(`📅 Work Summary\n\nStart Time: ${StartTime || "--:--"} Uhr\nEnd Time:     ${EndTime || "00:00"} Uhr\nWorked Hours: ${WorkedHours || "00:00 h"}`)
+      setDisplayValue(`⏰ Worktime Summary\n\nStart Time:   ${StartTime || "--:--"} Uhr\nEnd Time:     00:00 Uhr\nWorked Hours: ${WorkedHours || "00:00"} h`)
+      //setDisplayValue(`⏰ Worktime Summary\n\nStart Time: ${StartTime || "--:--"} Uhr\nEnd Time:     ${EndTime || "00:00"} Uhr\nWorked Hours: ${WorkedHours || "00:00 h"}`)
       
       setAnimate(true);
       setHighlightDisplay(true);
