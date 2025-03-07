@@ -16,7 +16,7 @@ export function SettingsCard({
     SettingsIsHidden
 }: SettingsCardProps) {
     return (
-        <Card className={`absolute left-full h-full min-h-inherit ml-2 top-0 !bg-gray-200 w-64 ${SettingsIsHidden ? "hidden" : "block"}`}>
+        <Card className={`absolute left-full h-full min-h-inherit ml-2 top-0 !bg-gray-200 w-64 transition-all duration-500 ease-in-out transform ${SettingsIsHidden ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"}`}>
           <CardTitle>Settings</CardTitle>
           <InputBox 
             label="Required Hours"

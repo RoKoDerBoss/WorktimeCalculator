@@ -16,7 +16,9 @@ interface MainCardProps {
     SettingsIsHidden: boolean;
     setSettingsIsHidden: (value: boolean) => void;
     buttonClick: () => void;
-    loading: boolean;
+    animate: boolean;
+    highlightDisplay: boolean;
+    resetDisplay: () => void;
 }
 
 export function MainCard({
@@ -27,7 +29,9 @@ export function MainCard({
     SettingsIsHidden,
     setSettingsIsHidden,
     buttonClick,
-    loading,
+    animate,
+    highlightDisplay,
+    resetDisplay,
 }: MainCardProps) {
     return (
         <Card className='w-96'>
@@ -41,7 +45,7 @@ export function MainCard({
           <DisplayBox
               multiline={true}
               value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
-              className="mt-6 mb-6 font-semibold font-mono h-36"
+              className={`mt-6 mb-6 font-semibold font-mono h-36 border-2 transition-all duration-500 ease-in-out ${highlightDisplay ? "border-green-300" : ""} ${animate ? "opacity-100 scale-105" : "opacity-0 scale-95"}`}
             />
           <InputBox
               value={StartTime}
@@ -52,11 +56,11 @@ export function MainCard({
             />
           <CardFooter>
             <div className='flex items-center justify-center relative'>
-              <Button onClick={buttonClick} loading={loading} className='w-40'>
+              <Button onClick={buttonClick} className='w-40'>
                 Calculate
               </Button>
               <div className='absolute left-full'>
-              <IconButton icon={<FontAwesomeIcon icon={faRotateLeft} />} onClick={() => setDisplayValue("\n\n                ...")} size='md'/>
+              <IconButton icon={<FontAwesomeIcon icon={faRotateLeft} />} onClick={resetDisplay} size='md'/>
               </div>
             </div>
           </CardFooter>
