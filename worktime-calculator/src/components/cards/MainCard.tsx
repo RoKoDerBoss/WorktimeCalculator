@@ -19,6 +19,7 @@ interface MainCardProps {
     animate: boolean;
     highlightDisplay: boolean;
     resetDisplay: () => void;
+    resetButtonisDisabled: boolean;
 }
 
 export function MainCard({
@@ -32,6 +33,7 @@ export function MainCard({
     animate,
     highlightDisplay,
     resetDisplay,
+    resetButtonisDisabled,
 }: MainCardProps) {
     return (
         <Card className='w-96'>
@@ -46,7 +48,7 @@ export function MainCard({
                 multiline={true}
                 value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
                 className={`mt-6 mb-6 font-semibold font-mono h-36 border-2 transition-all duration-500 ease-in-out 
-                    ${highlightDisplay ? "border-green-300" : ""} 
+                    ${highlightDisplay ? "border-green-400" : ""} 
                     ${animate ? "opacity-100 scale-100" : "opacity-50 scale-95"}`
                 }
             />
@@ -58,13 +60,13 @@ export function MainCard({
               onChange={(e) => setStartTime(e.target.value)}
             />
           <CardFooter>
-            <div className='flex items-center justify-center relative'>
+            <div className='flex items-center justify-center relative space-x-4'>
+            <Button onClick={resetDisplay} className='w-40' disabled={resetButtonisDisabled} variant='secondary'>
+                Reset
+              </Button>
               <Button onClick={buttonClick} className='w-40'>
                 Calculate
               </Button>
-              <div className='absolute left-full'>
-              <IconButton icon={<FontAwesomeIcon icon={faRotateLeft} />} onClick={resetDisplay} size='md'/>
-              </div>
             </div>
           </CardFooter>
         </Card>

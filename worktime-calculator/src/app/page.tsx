@@ -6,7 +6,7 @@ import { SettingsCard } from "../components/cards/SettingsCard";
 
 
 export default function Home() {
-  const [DisplayValue, setDisplayValue] = useState("\n\n                ...");
+  const [DisplayValue, setDisplayValue] = useState("");
   const [StartTime, setStartTime] = useState("");
   const [RequiredHours, setRequiredHours] = useState("07:15");
   
@@ -14,7 +14,7 @@ export default function Home() {
   const [highlightDisplay, setHighlightDisplay] = useState(false);
   const [animate, setAnimate] = useState(true);
   const animation_delay = 200;
-
+  const [isDisabled, setisDisabed] = useState(true);
   
   function buttonClick(){
     setAnimate(false);
@@ -28,15 +28,18 @@ export default function Home() {
       setAnimate(true);
       setHighlightDisplay(true);
     }, animation_delay)
+
+    setisDisabed(false);
   }
   
   function resetDisplay() {
     setAnimate(false);
     setTimeout(() => {
-      setDisplayValue("\n\n                ...");
+      setDisplayValue("");
       setAnimate(true);
       setHighlightDisplay(false);
     }, animation_delay)
+    setisDisabed(true);
   }
 
   return (
@@ -56,6 +59,7 @@ export default function Home() {
           animate={animate}
           highlightDisplay={highlightDisplay}
           resetDisplay={resetDisplay}
+          resetButtonisDisabled={isDisabled}
         />
         <SettingsCard 
           RequiredHours={RequiredHours}

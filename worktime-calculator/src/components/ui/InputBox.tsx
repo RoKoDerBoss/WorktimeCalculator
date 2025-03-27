@@ -25,7 +25,7 @@ export function InputBox({
 }: InputBoxProps) {
     return (
         <div className={clsx("flex flex-col", width)}>
-        {label && <label className="mb-2 mt-4 text-gray-700">{label}</label>}
+        {label && <label className="mb-1 text-gray-700 font-semibold text-sm">{label}</label>}
         {multiline ? (
             <textarea    
                 disabled={false}    
