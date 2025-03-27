@@ -47,7 +47,7 @@ export function MainCard({
           <DisplayBox
                 multiline={true}
                 value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
-                className={`mt-6 mb-6 font-semibold font-mono h-36 border-2 transition-all duration-500 ease-in-out 
+                className={`mt-6 mb-6 font-semibold font-mono h-44 border-2 transition-all duration-500 ease-in-out 
                     ${highlightDisplay ? "border-green-400" : ""} 
                     ${animate ? "opacity-100 scale-100" : "opacity-50 scale-95"}`
                 }

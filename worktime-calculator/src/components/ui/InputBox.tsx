@@ -1,6 +1,8 @@
 "use client"
 
 import clsx from "clsx";
+import React, { useState, useEffect } from 'react';
+import { parseTimeString } from '../../app/utils/timeUtils';
 
 interface InputBoxProps{
     label?: string;
@@ -23,6 +25,23 @@ export function InputBox({
     height = "h-8",
     multiline = false
 }: InputBoxProps) {
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        if (!value || value.trim() === "") {
+            setError(false);
+            return
+        }
+
+        // Check format
+        const result = parseTimeString(value);
+        if (!result) {
+            setError(true);
+        } else {
+            setError(false)
+        }
+    }, [value]);
+    
     return (
         <div className={clsx("flex flex-col", width)}>
         {label && <label className="mb-1 text-gray-700 font-semibold text-sm">{label}</label>}
@@ -34,6 +53,7 @@ export function InputBox({
                 onChange={onChange}
                 className={clsx(
                     "border border-gray-300 bg-gray-100 text-gray-600 rounded-lg px-3 py-2 focus:ring focus:ring-green-100 outline-none resize-none",
+                    error ? "border-red-600" : "",
                     width,
                     height,
                     className)}
@@ -47,6 +67,7 @@ export function InputBox({
                 onChange={onChange}
                 className={clsx(
                     "border border-gray-300 bg-gray-100 text-gray-700 rounded-lg px-3 py-2 focus:ring focus:ring-green-100 outline-none",
+                    error ? "border-red-400 border-2 focus:ring-red-200" : "",
                     width,
                     height,
                     className
