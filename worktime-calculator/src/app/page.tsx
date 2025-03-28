@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MainCard } from "../components/cards/MainCard";
 import { SettingsCard } from "../components/cards/SettingsCard";
 import { parseTimeString, timeToMinutes, minutesToTime, formatTime, getCurrentTime } from "./utils/timeUtils";
@@ -60,8 +60,8 @@ export default function Home() {
     // Set local variables to store values
     let _startTime = startTime;
     let _endTime = "";
-    let _requiredHours = requiredHours;
-    let _breakDuration = breakDuration;
+    const _requiredHours = requiredHours;
+    const _breakDuration = breakDuration;
 
     // calculate startTime & endTime
     if (_startTime === "") {
@@ -71,7 +71,7 @@ export default function Home() {
     _endTime = calculateEndTime(_startTime, _requiredHours, _breakDuration)
 
     // Construct the output string
-    let outputString = `⏰ Worktime Summary\n\nStart Time:              ${_startTime || "--:--"} Uhr\nEnd Time:                ${_endTime || "00:00"} Uhr\nWorkhours:               ${_requiredHours || "00:00"} h\nBreak:                   ${_breakDuration || "00:00"} h`
+    const outputString = `⏰ Worktime Summary\n\nStart Time:              ${_startTime || "--:--"} Uhr\nEnd Time:                ${_endTime || "00:00"} Uhr\nWorkhours:               ${_requiredHours || "00:00"} h\nBreak:                   ${_breakDuration || "00:00"} h`
 
     // Update display
       // Start animation sequence

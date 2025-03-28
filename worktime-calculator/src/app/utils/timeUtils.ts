@@ -1,5 +1,3 @@
-import { CiNoWaitingSign } from "react-icons/ci";
-
 // Parse a time string (HH:MM format) into hours and minutes
 export function parseTimeString(timeStr: string): {hours: number, minutes: number} | null {
     // Basic validation for empty input
@@ -22,7 +20,10 @@ export function parseTimeString(timeStr: string): {hours: number, minutes: numbe
 }
 
 // Convert time to minutes for easier calculation
-export function timeToMinutes(time: {hours: number, minutes: number}): number {
+export function timeToMinutes(time: {hours: number, minutes: number} | null): number {
+    if (!time) {
+        return 0;
+    }
     return time.hours * 60 + time.minutes
 }
 

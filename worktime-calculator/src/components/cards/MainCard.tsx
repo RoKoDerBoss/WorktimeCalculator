@@ -1,12 +1,11 @@
 "use client"
 
-import { useState } from 'react';
 import { Button } from '../ui/Button';
 import { Card, CardTitle, CardContent, CardFooter } from '../ui/Card' 
 import { InputBox, DisplayBox } from '../ui/InputBox';
 import { IconButton } from '../ui/IconButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGear, faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faGear } from "@fortawesome/free-solid-svg-icons";
 
 interface MainCardProps {
     StartTime: string;
@@ -26,7 +25,6 @@ export function MainCard({
     StartTime,
     setStartTime,
     DisplayValue,
-    setDisplayValue,
     SettingsIsHidden,
     setSettingsIsHidden,
     buttonClick,
@@ -48,8 +46,8 @@ export function MainCard({
                 multiline={true}
                 value= {DisplayValue} //"This is Line1\nThis is Line2\nThis is Line3"
                 className={`mt-6 mb-6 font-semibold font-mono h-44 border-2 transition-all duration-500 ease-in-out 
-                    ${highlightDisplay ? "border-green-400" : ""} 
-                    ${animate ? "opacity-100 scale-100" : "opacity-50 scale-95"}`
+                    ${highlightDisplay ? 'border-green-400' : ''} 
+                    ${animate ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`
                 }
             />
           <InputBox
