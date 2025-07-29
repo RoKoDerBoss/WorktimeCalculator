@@ -9,9 +9,11 @@ import { parseTimeString, timeToMinutes, minutesToTime, formatTime, getCurrentTi
 export default function Home() {
   const [displayValue, setDisplayValue] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [requiredHours, setRequiredHours] = useState("07:15");
   const [breakDuration, setBreakDuration] = useState("00:30");
   
+  const [ShowSummary, setShowSummary] = useState(false);
   const [SettingsIsHidden, setSettingsIsHidden] = useState(true);
   const [highlightDisplay, setHighlightDisplay] = useState(false);
   const [animate, setAnimate] = useState(true);
@@ -59,35 +61,27 @@ export default function Home() {
   function buttonClick(){
     // Set local variables to store values
     let _startTime = startTime;
-    let _endTime = "";
     const _requiredHours = requiredHours;
     const _breakDuration = breakDuration;
 
     // calculate startTime & endTime
     if (_startTime === "") {
       _startTime = getCurrentTime();
+      setStartTime(getCurrentTime());
     }
 
-    _endTime = calculateEndTime(_startTime, _requiredHours, _breakDuration)
-
-    // Construct the output string
-    const outputString = `⏰ Worktime Summary\n\nStart Time:              ${_startTime || "--:--"} Uhr\nEnd Time:                ${_endTime || "00:00"} Uhr\nWorkhours:               ${_requiredHours || "00:00"} h\nBreak:                   ${_breakDuration || "00:00"} h`
+    setEndTime(calculateEndTime(_startTime, _requiredHours, _breakDuration))
 
     // Update display
       // Start animation sequence
       setAnimate(false);
         
       setTimeout(() => {
-        // Determine what to display based on whether there was an error
-        if (errorMessage) {
-          setDisplayValue(`⚠️ Error\n\n${errorMessage}`);
-        } else {
-          // Now endTime state is guaranteed to be updated
-          setDisplayValue(outputString);
-        }
+        //Update display show boolean
+        setShowSummary(true)
         
         setAnimate(true);
-        setHighlightDisplay(!errorMessage); // Only highlight on success
+        setHighlightDisplay(true); // Only highlight on success
         
         // Reset the flag for next calculation
       }, animation_delay);
@@ -98,7 +92,6 @@ export default function Home() {
   function resetDisplay() {
     setAnimate(false);
     setTimeout(() => {
-      setDisplayValue("");
       setAnimate(true);
       setHighlightDisplay(false);
       setStartTime("")
@@ -107,31 +100,37 @@ export default function Home() {
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center space-y-12">
-      <h1 className="text-5xl font-bold text-gray-100 font-arimo">
-        Worktime Calculator
-      </h1>
-      <div className='relative flex flex-row'>
-        <MainCard 
-          StartTime={startTime}
-          setStartTime={setStartTime}
-          DisplayValue={displayValue}
-          setDisplayValue={setDisplayValue}
-          SettingsIsHidden={SettingsIsHidden}
-          setSettingsIsHidden={setSettingsIsHidden}
-          buttonClick={buttonClick}
-          animate={animate}
-          highlightDisplay={highlightDisplay}
-          resetDisplay={resetDisplay}
-          resetButtonisDisabled={isDisabled}
-        />
-        <SettingsCard 
-          RequiredHours={requiredHours}
-          setRequiredHours={setRequiredHours}
-          BreakDuration={breakDuration}
-          setBreakDuration={setBreakDuration}
-          SettingsIsHidden={SettingsIsHidden}
-        />
+    <main className="flex min-h-screen items-center justify-center">
+      <div className="flex flex-col items-center justify-center space-y-12 p-6 sm:p-0">
+        <h1 className="text-5xl text-center font-bold text-gray-100">
+          Worktime Calculator
+        </h1>
+        <div className='relative flex flex-row'>
+          <MainCard 
+            StartTime={startTime}
+            setStartTime={setStartTime}
+            EndTime={endTime}
+            RequiredHours={requiredHours}
+            BreakDuration={breakDuration}
+            ShowSummary={ShowSummary}
+            DisplayValue={displayValue}
+            setDisplayValue={setDisplayValue}
+            SettingsIsHidden={SettingsIsHidden}
+            setSettingsIsHidden={setSettingsIsHidden}
+            buttonClick={buttonClick}
+            animate={animate}
+            highlightDisplay={highlightDisplay}
+            resetDisplay={resetDisplay}
+            resetButtonisDisabled={isDisabled}
+          />
+          <SettingsCard 
+            RequiredHours={requiredHours}
+            setRequiredHours={setRequiredHours}
+            BreakDuration={breakDuration}
+            setBreakDuration={setBreakDuration}
+            SettingsIsHidden={SettingsIsHidden}
+          />
+        </div>
       </div>
     </main>
   );

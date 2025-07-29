@@ -3,6 +3,7 @@
 import { Button } from '../ui/Button';
 import { Card, CardTitle, CardContent, CardFooter } from '../ui/Card' 
 import { InputBox, DisplayBox } from '../ui/InputBox';
+import { Display } from '../ui/Display'
 import { IconButton } from '../ui/IconButton'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
@@ -10,6 +11,10 @@ import { faGear } from "@fortawesome/free-solid-svg-icons";
 interface MainCardProps {
     StartTime: string;
     setStartTime: (value: string) => void;
+    EndTime: string;
+    RequiredHours: string;
+    BreakDuration: string;
+    ShowSummary: boolean;
     DisplayValue: string;
     setDisplayValue: (value: string) => void;
     SettingsIsHidden: boolean;
@@ -24,6 +29,10 @@ interface MainCardProps {
 export function MainCard({
     StartTime,
     setStartTime,
+    EndTime,
+    RequiredHours,
+    BreakDuration,
+    ShowSummary,
     DisplayValue,
     SettingsIsHidden,
     setSettingsIsHidden,
@@ -34,22 +43,25 @@ export function MainCard({
     resetButtonisDisabled,
 }: MainCardProps) {
     return (
-        <Card className='w-96'>
-          <div className='flex justify-between items-center mb-4'>
+        <Card className='w-full space-y-4'>
+          <div className='flex justify-between items-center'>
             <CardTitle className='text-left'>Start calculating</CardTitle>
             <IconButton icon={<FontAwesomeIcon icon={faGear} />} onClick={() => setSettingsIsHidden(!SettingsIsHidden)} size='md' />
           </div>
           <CardContent>
-            This tool calculates the remaining worktime until you're free like Dobby!
+            This tool calculates the remaining worktime until you're free like Dobby! 🙉
           </CardContent>
-          <DisplayBox
-                multiline={true}
-                value= {DisplayValue}
-                className={`mt-6 mb-6 font-semibold font-mono text-sm h-44 border-2 transition-all duration-500 ease-in-out 
-                    ${highlightDisplay ? 'border-green-400' : ''} 
-                    ${animate ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}`
-                }
-            />
+          <Display 
+              start_time={StartTime}
+              end_time={EndTime}
+              required_hours={RequiredHours}
+              break_duration={BreakDuration}
+              show_summary={ShowSummary}
+              className={`transition-all duration-300 ease-in-out
+                      ${highlightDisplay ? 'border-green-400' : ''}
+                      ${animate ? 'opacity-100 scale-100' : 'opacity-50 scale-95'}
+                `}
+          />
           <InputBox
               value={StartTime}
               width='w-full'
